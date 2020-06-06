@@ -1,4 +1,5 @@
 ﻿using BoxingUnboxing;
+using PracticeDelegates;
 using ReferenceBehaviour;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,29 @@ namespace MiscConceptPractice
 {
     class Program
     {
+        static void CustomPhotoProcessFilter(Photo photo)
+        {
+            Console.WriteLine("Custom filter applied on photo through delegate call");
+        }
+
+        static void CustomActionProcessFilter(Photo photo)
+        {
+            Console.WriteLine("Custom filter applied on photo through Action<> delegate call");
+        }
         static void Main(string[] args)
         {
-            //Reference behaviour
+            //Delegates and Action<> delegates
+            PhotoProcessor processor = new PhotoProcessor();
+            processor.DefaultProcess("abc");
+            PhotoProcessor.FilterHandler filterHandler = CustomPhotoProcessFilter;
+            processor.CustomProcess(filterHandler);
+            processor.CustomActionProcess(CustomActionProcessFilter);
 
+            //Reference behaviour
             Employee emp = new Employee();
             emp.Name = "Mayur";
 
-            Console.WriteLine($"Employee origianl name is {emp.Name }  {emp.GetHashCode()}");
+            Console.WriteLine($"Employee original name is {emp.Name }  {emp.GetHashCode()}");
 
             Employee.ChangeEmployeeName(emp, "Mangesh");
             Console.WriteLine($"Employee changed name is {emp.Name}  {emp.GetHashCode()}");
@@ -29,6 +45,8 @@ namespace MiscConceptPractice
 
             //Boxing Unboxing
             TestBoxUnbox.Box();
+
+
         }
     }
 }
