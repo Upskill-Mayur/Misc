@@ -1,4 +1,5 @@
 ﻿using BoxingUnboxing;
+using EventHandlerAndDelegates;
 using PracticeDelegates;
 using ReferenceBehaviour;
 using System;
@@ -22,12 +23,20 @@ namespace MiscConceptPractice
         }
         static void Main(string[] args)
         {
+            //EventHandler mechanism
+            VideoServiceManager videoServiceManager = new VideoServiceManager();
+            videoServiceManager.PerformVideoEncoding();
+
+            AddSpaces();
+
             //Delegates and Action<> delegates
             PhotoProcessor processor = new PhotoProcessor();
             processor.DefaultProcess("abc");
             PhotoProcessor.FilterHandler filterHandler = CustomPhotoProcessFilter;
             processor.CustomProcess(filterHandler);
             processor.CustomActionProcess(CustomActionProcessFilter);
+
+            AddSpaces();
 
             //Reference behaviour
             Employee emp = new Employee();
@@ -42,11 +51,17 @@ namespace MiscConceptPractice
             Employee.ChangeEmployeeNamePassByRef(ref emp, "Santosh");
             Console.WriteLine($"Employee changed name after pass by ref is {emp.Name}  {emp.GetHashCode()}");
 
+            AddSpaces();
 
             //Boxing Unboxing
             TestBoxUnbox.Box();
+        }
 
-
+        private static void AddSpaces()
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
         }
     }
 }

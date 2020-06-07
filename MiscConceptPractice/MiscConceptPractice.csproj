@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoxingUnboxing.cs" />
+    <Compile Include="EventHandlerAndDelegates.cs" />
     <Compile Include="PracticeDelegates.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
